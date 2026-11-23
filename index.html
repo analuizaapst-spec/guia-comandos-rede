@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <!-- Faz o site se ajustar à tela do celular -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de comandos de rede</title>
+  <!-- Liga este HTML ao arquivo de estilo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <h1>Guia de comandos de rede</h1>
+    <p>
+      Cinco comandos do Windows para descobrir o que está acontecendo
+      quando a internet falha. Abra o Prompt de Comando e teste cada um.
+    </p>
+  </header>
+
+  <main>
+
+    <section class="comando">
+      <h2>ping</h2>
+      <p>Testa se o seu computador consegue falar com outro e mede quanto tempo a resposta leva.</p>
+      <pre><code>ping google.com
+ping -n 10 google.com</code></pre>
+      <ul>
+        <li><strong>tempo=15ms</strong>: quanto menor, mais rápida a conexão.</li>
+        <li><strong>Esgotado o tempo limite</strong>: o destino não respondeu.</li>
+        <li>O <code>-n 10</code> manda 10 pacotes em vez dos 4 padrão.</li>
+      </ul>
+    </section>
+
+    <section class="comando">
+      <h2>ipconfig</h2>
+      <p>Mostra a configuração de rede do seu computador.</p>
+      <pre><code>ipconfig
+ipconfig /all</code></pre>
+      <ul>
+        <li><strong>Endereço IPv4</strong>: o endereço do seu computador na rede.</li>
+        <li><strong>Gateway Padrão</strong>: o endereço do roteador, por onde você sai para a internet.</li>
+        <li>O <code>/all</code> mostra também o endereço MAC e os servidores DNS.</li>
+      </ul>
+    </section>
+
+    <section class="comando">
+      <h2>tracert</h2>
+      <p>Mostra o caminho que os dados percorrem até o destino, roteador por roteador.</p>
+      <pre><code>tracert google.com</code></pre>
+      <ul>
+        <li>Cada linha é um salto (hop) pelo caminho.</li>
+        <li>Se o tempo sobe de repente em um salto, o problema pode estar ali.</li>
+        <li>No Linux e no Mac, o comando se chama <code>traceroute</code>.</li>
+      </ul>
+    </section>
+
+    <section class="comando">
+      <h2>nslookup</h2>
+      <p>Pergunta ao servidor DNS qual é o endereço IP de um site.</p>
+      <pre><code>nslookup google.com</code></pre>
+      <ul>
+        <li>O DNS é a "lista telefônica" da internet: troca nome por número.</li>
+        <li>Se o ping por IP funciona e o ping por nome não, o problema é o DNS.</li>
+      </ul>
+    </section>
+
+    <section class="comando">
+      <h2>netstat</h2>
+      <p>Lista as conexões ativas e as portas abertas no seu computador.</p>
+      <pre><code>netstat -an</code></pre>
+      <ul>
+        <li><strong>ESTABLISHED</strong>: conexão em andamento.</li>
+        <li><strong>LISTENING</strong>: porta aberta, esperando alguém se conectar.</li>
+      </ul>
+    </section>
+
+    <section class="roteiro">
+      <h2>Roteiro quando a internet cai</h2>
+      <ol>
+        <li>Rode <code>ipconfig</code> e confira se existe um IP e um gateway.</li>
+        <li>Rode <code>ping</code> no endereço do gateway. Se falhar, o problema é na rede local.</li>
+        <li>Rode <code>ping 8.8.8.8</code>. Se falhar, o problema está entre você e a internet.</li>
+        <li>Rode <code>ping google.com</code>. Se falhar só aqui, o problema é o DNS.</li>
+      </ol>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p>Projeto de estudo em HTML e CSS.</p>
+  </footer>
+
+  <!-- O script fica no fim do body para rodar depois que a página carregou -->
+  <script src="script.js"></script>
+
+</body>
+</html>
